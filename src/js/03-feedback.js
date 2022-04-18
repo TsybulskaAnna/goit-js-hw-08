@@ -1,4 +1,5 @@
 import throttle from 'lodash.throttle';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 const form = document.querySelector('.feedback-form');
 form.addEventListener('input', throttle(onFormData, 500));
@@ -14,6 +15,10 @@ function onFormData(e) {
 function onSubmitForm(e) {
   e.preventDefault();
   if (!e.currentTarget.elements.email.value || !e.currentTarget.elements.message.value) {
+    Notify.failure('Заполните все поля', {
+      timeout: 2000,
+      position: 'center-top',
+    });
     return;
   
 }
