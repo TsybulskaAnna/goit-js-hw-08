@@ -12,11 +12,12 @@ function onFormData(e) {
 }
 
 function onSubmitForm(e) {
-  console.log(JSON.parse(localStorage.getItem('feedback-form-state')));
   e.preventDefault();
-  e.currentTarget.reset();
-  localStorage.removeItem('feedback-form-state');
+  if (!e.currentTarget.elements.email.value || !e.currentTarget.elements.message.value) {
+    return;
+  
 }
+
 
 (function dataFromLocalStorage() {
   const data = JSON.parse(localStorage.getItem('feedback-form-state'));
@@ -27,3 +28,8 @@ function onSubmitForm(e) {
     message.value = data.message;
   }
 })();
+
+
+console.log(JSON.parse(localStorage.getItem('feedback-form-state')));
+e.currentTarget.reset();
+localStorage.removeItem('feedback-form-state');}
